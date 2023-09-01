@@ -1,5 +1,8 @@
 package ru.clevertec.stpnbelko.model;
 
+import lombok.Getter;
+
+//@Getter
 public enum OperationType {
 
     TRANSFER(1, "Перевод"),
@@ -20,4 +23,5 @@ public enum OperationType {
     public String toString() {
         return  id + "  " + descr + " \n";
     }
+
 }
