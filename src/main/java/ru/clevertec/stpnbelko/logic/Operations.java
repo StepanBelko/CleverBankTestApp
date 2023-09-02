@@ -3,7 +3,8 @@ package ru.clevertec.stpnbelko.logic;
 import ru.clevertec.stpnbelko.dao.impl.AccountDAO;
 import ru.clevertec.stpnbelko.dao.impl.TransactionDAO;
 import ru.clevertec.stpnbelko.model.Account;
-import ru.clevertec.stpnbelko.model.Transaction;
+import ru.clevertec.stpnbelko.model.Receipt;
+import ru.clevertec.stpnbelko.model.transaction.Transaction;
 
 public class Operations {
 
@@ -28,6 +29,10 @@ public class Operations {
 
         System.out.println("Текущий баланс: " + currentAccount.getBalance() + " "
                 + currentAccount.getCurrency());
+
+        Receipt receipt = transaction.makeReceipt();
+        receipt.setAmount(transaction.getAmount());
+        System.out.println(receipt);
 
         return true;
     }

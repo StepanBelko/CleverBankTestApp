@@ -1,7 +1,8 @@
 package ru.clevertec.stpnbelko.dao.impl;
 
 import ru.clevertec.stpnbelko.dao.AbstractDAO;
-import ru.clevertec.stpnbelko.model.Transaction;
+import ru.clevertec.stpnbelko.model.Receipt;
+import ru.clevertec.stpnbelko.model.transaction.Transaction;
 import ru.clevertec.stpnbelko.util.DBUtil;
 
 import java.sql.Connection;
@@ -31,6 +32,9 @@ public class TransactionDAO extends AbstractDAO<Transaction> {
             DBUtil.release(connection, null, preparedStatement, null);
         }
 
+        Receipt receipt = transaction.makeReceipt();
+        System.out.println(receipt);
+
         return true;
     }
 
@@ -58,4 +62,5 @@ public class TransactionDAO extends AbstractDAO<Transaction> {
     public Set<Transaction> getAll() {
         return null;
     }
+
 }

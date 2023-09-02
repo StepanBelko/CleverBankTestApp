@@ -18,11 +18,6 @@ public class User {
     private String lastName;
     private Set<Account> bankAccounts;
 
-    public User(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
     @Override
     public String toString() {
         return "User{" +

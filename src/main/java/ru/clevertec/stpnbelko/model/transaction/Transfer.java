@@ -2,7 +2,7 @@ package ru.clevertec.stpnbelko.model.transaction;
 
 import ru.clevertec.stpnbelko.model.Account;
 import ru.clevertec.stpnbelko.model.OperationType;
-import ru.clevertec.stpnbelko.model.Transaction;
+import ru.clevertec.stpnbelko.model.Receipt;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -29,4 +29,5 @@ public class Transfer extends TransactionType {
         } while (currentAccount.getBalance().compareTo(amount) == -1);
         transaction.setAmount(amount);
     }
+
 }

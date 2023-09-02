@@ -4,14 +4,12 @@ import ru.clevertec.stpnbelko.dao.impl.AccountDAO;
 import ru.clevertec.stpnbelko.dao.impl.UserDAO;
 import ru.clevertec.stpnbelko.model.Account;
 import ru.clevertec.stpnbelko.model.OperationType;
-import ru.clevertec.stpnbelko.model.Transaction;
+import ru.clevertec.stpnbelko.model.transaction.Transaction;
 import ru.clevertec.stpnbelko.model.User;
 import ru.clevertec.stpnbelko.model.transaction.Refil;
-import ru.clevertec.stpnbelko.model.transaction.TransactionType;
 import ru.clevertec.stpnbelko.model.transaction.Transfer;
 import ru.clevertec.stpnbelko.model.transaction.Withdrawal;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
@@ -22,7 +20,6 @@ import static ru.clevertec.stpnbelko.model.OperationType.*;
 public class Main {
 
     public static void main(String[] args) {
-
 
         Scanner scanner = new Scanner(System.in);
 
@@ -52,7 +49,7 @@ public class Main {
         int accountId = scanner.nextInt();
         Account currentAccount = (Account) accountMap.get(accountId);
 
-        
+
         System.out.println("\nВыберите операцию: \n" + "1 .. " + values().length);
         for (OperationType type : OperationType.values()) {
             System.out.println(type.id + " " + type.descr);
