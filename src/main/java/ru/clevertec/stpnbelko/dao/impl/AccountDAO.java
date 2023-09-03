@@ -15,8 +15,8 @@ import java.util.Set;
 public class AccountDAO extends AbstractDAO<Account> {
 
     @Override
-    public boolean insert(Account account) {
-        return false;
+    public int insert(Account account) {
+        return 1;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class AccountDAO extends AbstractDAO<Account> {
                 account.setBankId(resultSet.getInt("bank_id"));
                 account.setBalance(resultSet.getBigDecimal("balance"));
                 account.setCurrency(resultSet.getString("currency"));
-                account.setOpeningDate(resultSet.getString("opening_date"));
+                account.setOpeningDate(resultSet.getTimestamp("opening_date"));
             }
 
         } catch (SQLException e) {
@@ -97,7 +97,7 @@ public class AccountDAO extends AbstractDAO<Account> {
                 account.setBankId(resultSet.getInt("bank_id"));
                 account.setBalance(resultSet.getBigDecimal("balance"));
                 account.setCurrency(resultSet.getString("currency"));
-                account.setOpeningDate(resultSet.getString("opening_date"));
+                account.setOpeningDate(resultSet.getTimestamp("opening_date"));
                 allAccounts.add(account);
             }
         } catch (SQLException e) {
@@ -127,7 +127,7 @@ public class AccountDAO extends AbstractDAO<Account> {
                     account.setBankId(resultSet.getInt("bank_id"));
                     account.setBalance(resultSet.getBigDecimal("balance"));
                     account.setCurrency(resultSet.getString("currency"));
-                    account.setOpeningDate(resultSet.getString("opening_date"));
+                    account.setOpeningDate(resultSet.getTimestamp("opening_date"));
                     userAccounts.add(account);
                 }
             } catch (SQLException e) {

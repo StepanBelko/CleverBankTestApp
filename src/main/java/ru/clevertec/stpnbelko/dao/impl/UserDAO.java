@@ -14,7 +14,7 @@ import java.util.Set;
 public class UserDAO extends AbstractDAO<User> {
 
     @Override
-    public boolean insert(User user) {
+    public int insert(User user) {
 
         Connection connection = DBUtil.getConnection();
         String sql = "INSERT INTO users (first_name, last_name) VALUES (?, ?)";
@@ -32,7 +32,7 @@ public class UserDAO extends AbstractDAO<User> {
             DBUtil.release(connection, null, preparedStatement, null);
         }
 
-        return true;
+        return 1;
     }
 
     @Override
@@ -72,7 +72,6 @@ public class UserDAO extends AbstractDAO<User> {
     public User getById(int id) {
         String sql = "SELECT * FROM users WHERE id = ?";
 
-        //        String getRolesSql = "SELECT * FROM roles WHERE roles.id IN (SELECT role_id FROM users_roles WHERE user_id = ?)";
         User user = null;
 
         try (Connection connection = DBUtil.getConnection();

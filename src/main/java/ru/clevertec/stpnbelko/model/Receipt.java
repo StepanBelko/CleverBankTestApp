@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Getter
@@ -23,11 +22,11 @@ public class Receipt {
     private int fromAccountNumber;
     private int toAccountNumber;
     private BigDecimal amount;
-
+    private String currency;
 
     @Override
     public String toString() {
-        return "ЧЕК!!!!!!{" +
+        return "Банковский чек {" +
                 "id=" + id +
                 ", date=" + date +
                 ", operationType='" + operationType + '\'' +
@@ -36,6 +35,7 @@ public class Receipt {
                 ", fromAccountNumber=" + fromAccountNumber +
                 ", toAccountNumber=" + toAccountNumber +
                 ", amount=" + amount +
+                ", currency='" + currency + '\'' +
                 '}';
     }
 }

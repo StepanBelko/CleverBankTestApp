@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -20,6 +21,6 @@ public class Account {
     private int bankId;
     private BigDecimal balance;
     private String currency;
-    private String openingDate;
+    private Timestamp openingDate;
 
 }

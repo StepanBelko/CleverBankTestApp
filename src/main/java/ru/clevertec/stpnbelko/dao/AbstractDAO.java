@@ -4,7 +4,7 @@ import java.util.Set;
 
 public abstract class AbstractDAO<T> {
 
-    public abstract boolean insert(T t);
+    public abstract int insert(T t);
 
     public abstract boolean update(T t);
 

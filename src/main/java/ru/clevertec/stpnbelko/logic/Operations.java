@@ -6,6 +6,8 @@ import ru.clevertec.stpnbelko.model.Account;
 import ru.clevertec.stpnbelko.model.Receipt;
 import ru.clevertec.stpnbelko.model.transaction.Transaction;
 
+import static ru.clevertec.stpnbelko.output.Writer.writeToConsole;
+
 public class Operations {
 
     public static boolean doOperation(Account currentAccount, Transaction transaction) {
@@ -13,7 +15,7 @@ public class Operations {
         AccountDAO accDao = new AccountDAO();
 
         TransactionDAO transactionDAO = new TransactionDAO();
-        transactionDAO.insert(transaction);
+        int currentTransId = transactionDAO.insert(transaction);
 
         if (currentAccount.getId() == transaction.getToAccountNumber()) {
             currentAccount.setBalance(currentAccount.getBalance().add(transaction.getAmount()));
@@ -30,9 +32,9 @@ public class Operations {
         System.out.println("Текущий баланс: " + currentAccount.getBalance() + " "
                 + currentAccount.getCurrency());
 
-        Receipt receipt = transaction.makeReceipt();
+        Receipt receipt = transaction.makeReceipt(currentTransId);
         receipt.setAmount(transaction.getAmount());
-        System.out.println(receipt);
+        writeToConsole(receipt);
 
         return true;
     }
