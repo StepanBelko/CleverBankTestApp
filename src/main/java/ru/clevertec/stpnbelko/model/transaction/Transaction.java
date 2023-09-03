@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.clevertec.stpnbelko.model.Account;
+import ru.clevertec.stpnbelko.model.OperationType;
 import ru.clevertec.stpnbelko.model.Receipt;
 import ru.clevertec.stpnbelko.util.DBUtil;
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -20,11 +22,12 @@ public class Transaction {
     private BigDecimal amount;
     private int fromAccountNumber;
     private int toAccountNumber;
-    private TransactionType transactionType;
+    private OperationType operationType;
 
-    public Transaction(TransactionType transactionType, Account currentAccount) {
-        this.transactionType = transactionType;
-        transactionType.fillTransaction(currentAccount, this);
+
+    public Transaction(OperationType operationType, Account currentAccount) {
+        this.operationType = operationType;
+        this.operationType.fillTransaction(currentAccount, this);
     }
 
     public Receipt makeReceipt(int currentTransId) {
@@ -58,7 +61,21 @@ public class Transaction {
                 reciept = new Receipt();
                 reciept.setId(resultSet.getInt("id"));
                 reciept.setDate(resultSet.getTimestamp("date"));
-                reciept.setOperationType(resultSet.getString("operation_type"));
+
+                String operation_type = resultSet.getString("operation_type");
+
+                if (Objects.equals(operation_type, OperationType.TRANSFER.descr)) {
+                    reciept.setOperationType(OperationType.TRANSFER);
+                } else if (Objects.equals(operation_type, OperationType.WITHDRAWAL.descr)) {
+                    reciept.setOperationType(OperationType.WITHDRAWAL);
+                } else if (Objects.equals(operation_type, OperationType.REFIL.descr)) {
+                    reciept.setOperationType(OperationType.REFIL);
+                } else if (Objects.equals(operation_type, OperationType.STATEMENT.descr)) {
+                    reciept.setOperationType(OperationType.STATEMENT);
+                } else if (Objects.equals(operation_type, OperationType.INTEREST_CALCULATION.descr)) {
+                    reciept.setOperationType(OperationType.INTEREST_CALCULATION);
+                }
+
                 reciept.setFromBankName(resultSet.getString("from_bank_name"));
                 reciept.setToBankName(resultSet.getString("to_bank_name"));
                 reciept.setFromAccountNumber(resultSet.getInt("from_account_number"));
@@ -70,12 +87,10 @@ public class Transaction {
                 System.out.println("Something wrong");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
+
         return reciept;
     }
-
-    ;
 }
 

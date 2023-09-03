@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 public class Receipt {
     private int id;
     private Timestamp date;
-    private String operationType;
+    private OperationType operationType;
     private String fromBankName;
     private String toBankName;
     private int fromAccountNumber;

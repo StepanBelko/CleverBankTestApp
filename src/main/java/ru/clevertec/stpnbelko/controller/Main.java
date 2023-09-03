@@ -4,11 +4,8 @@ import ru.clevertec.stpnbelko.dao.impl.AccountDAO;
 import ru.clevertec.stpnbelko.dao.impl.UserDAO;
 import ru.clevertec.stpnbelko.model.Account;
 import ru.clevertec.stpnbelko.model.OperationType;
-import ru.clevertec.stpnbelko.model.transaction.Transaction;
+import ru.clevertec.stpnbelko.model.transaction.*;
 import ru.clevertec.stpnbelko.model.User;
-import ru.clevertec.stpnbelko.model.transaction.Refil;
-import ru.clevertec.stpnbelko.model.transaction.Transfer;
-import ru.clevertec.stpnbelko.model.transaction.Withdrawal;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -62,13 +59,13 @@ public class Main {
         Transaction transaction = null;
 
         if (choice == TRANSFER.id) {
-            transaction = new Transaction(new Transfer(), currentAccount);
+            transaction = new Transaction(TRANSFER, currentAccount);
         } else if (choice == WITHDRAWAL.id) {
-            transaction = new Transaction(new Withdrawal(), currentAccount);
+            transaction = new Transaction(WITHDRAWAL, currentAccount);
         } else if (choice == REFIL.id) {
-            transaction = new Transaction(new Refil(), currentAccount);
+            transaction = new Transaction(REFIL, currentAccount);
         } else if (choice == STATEMENT.id) {
-            System.out.println(4);
+            transaction = new Transaction(STATEMENT, currentAccount);
         }
 
 

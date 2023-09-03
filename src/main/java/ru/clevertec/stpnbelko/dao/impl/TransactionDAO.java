@@ -24,7 +24,7 @@ public class TransactionDAO extends AbstractDAO<Transaction> {
 
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, transaction.getTransactionType().getOperationType().descr);
+            preparedStatement.setString(1, transaction.getOperationType().descr);
             preparedStatement.setBigDecimal(2, transaction.getAmount());
             preparedStatement.setInt(3, transaction.getFromAccountNumber());
             preparedStatement.setInt(4, transaction.getToAccountNumber());

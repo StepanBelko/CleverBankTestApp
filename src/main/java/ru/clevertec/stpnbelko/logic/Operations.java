@@ -6,8 +6,7 @@ import ru.clevertec.stpnbelko.model.Account;
 import ru.clevertec.stpnbelko.model.Receipt;
 import ru.clevertec.stpnbelko.model.transaction.Transaction;
 
-import static ru.clevertec.stpnbelko.output.Writer.writeToConsole;
-import static ru.clevertec.stpnbelko.output.Writer.writeToFile;
+import static ru.clevertec.stpnbelko.output.Writer.*;
 
 public class Operations {
 
@@ -36,7 +35,8 @@ public class Operations {
         Receipt receipt = transaction.makeReceipt(currentTransId);
         receipt.setAmount(transaction.getAmount());
 
-        writeToConsole(receipt);
+
+        writeToConsole(createCheckFromReceipt(receipt));
         writeToFile(receipt);
 
         return true;
