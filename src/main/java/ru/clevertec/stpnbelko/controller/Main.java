@@ -35,9 +35,9 @@ public class Main {
 
         HashMap<Integer, Object> accountMap = new HashMap<>();
         int i = 1;
-        System.out.println("Выберите счёт (введите номер)");
+        System.out.println("Выберите счёт ");
         for (Account account : accDao.getUserAccounts(user)) {
-            System.out.println("№" + i + " - " + account.getId() + " "
+            System.out.println(i + " - " + account.getId() + " "
                     + account.getBalance() + " "
                     + account.getCurrency() + " "
                     + account.getBankId());
