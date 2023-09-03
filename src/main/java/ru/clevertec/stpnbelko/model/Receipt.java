@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 
 public class Receipt {
     private int id;
-    private Timestamp date;
+    private Timestamp currentTime;
     private OperationType operationType;
     private String fromBankName;
     private String toBankName;
@@ -28,7 +28,7 @@ public class Receipt {
     public String toString() {
         return "Банковский чек {" +
                 "id=" + id +
-                ", date=" + date +
+                ", date=" + currentTime +
                 ", operationType='" + operationType + '\'' +
                 ", fromBankName='" + fromBankName + '\'' +
                 ", toBankName='" + toBankName + '\'' +

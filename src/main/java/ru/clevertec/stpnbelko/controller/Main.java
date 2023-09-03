@@ -4,7 +4,7 @@ import ru.clevertec.stpnbelko.dao.impl.AccountDAO;
 import ru.clevertec.stpnbelko.dao.impl.UserDAO;
 import ru.clevertec.stpnbelko.model.Account;
 import ru.clevertec.stpnbelko.model.OperationType;
-import ru.clevertec.stpnbelko.model.transaction.*;
+import ru.clevertec.stpnbelko.model.Transaction;
 import ru.clevertec.stpnbelko.model.User;
 
 import java.util.HashMap;
@@ -66,8 +66,9 @@ public class Main {
             transaction = new Transaction(REFIL, currentAccount);
         } else if (choice == STATEMENT.id) {
             transaction = new Transaction(STATEMENT, currentAccount);
-        }
+        } else {
 
+        }
 
         doOperation(currentAccount, transaction);
 

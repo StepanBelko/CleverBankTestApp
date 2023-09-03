@@ -1,4 +1,4 @@
-package ru.clevertec.stpnbelko.model.transaction;
+package ru.clevertec.stpnbelko.model;
 
 
 import lombok.Getter;
@@ -60,7 +60,7 @@ public class Transaction {
             if (resultSet.next()) {
                 reciept = new Receipt();
                 reciept.setId(resultSet.getInt("id"));
-                reciept.setDate(resultSet.getTimestamp("date"));
+                reciept.setCurrentTime(resultSet.getTimestamp("date"));
 
                 String operation_type = resultSet.getString("operation_type");
 
@@ -72,8 +72,6 @@ public class Transaction {
                     reciept.setOperationType(OperationType.REFIL);
                 } else if (Objects.equals(operation_type, OperationType.STATEMENT.descr)) {
                     reciept.setOperationType(OperationType.STATEMENT);
-                } else if (Objects.equals(operation_type, OperationType.INTEREST_CALCULATION.descr)) {
-                    reciept.setOperationType(OperationType.INTEREST_CALCULATION);
                 }
 
                 reciept.setFromBankName(resultSet.getString("from_bank_name"));

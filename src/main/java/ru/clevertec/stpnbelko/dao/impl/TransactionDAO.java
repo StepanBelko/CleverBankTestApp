@@ -1,7 +1,7 @@
 package ru.clevertec.stpnbelko.dao.impl;
 
 import ru.clevertec.stpnbelko.dao.AbstractDAO;
-import ru.clevertec.stpnbelko.model.transaction.Transaction;
+import ru.clevertec.stpnbelko.model.Transaction;
 import ru.clevertec.stpnbelko.util.DBUtil;
 
 import java.sql.Connection;

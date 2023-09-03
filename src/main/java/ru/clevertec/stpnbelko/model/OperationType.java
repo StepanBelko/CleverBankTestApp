@@ -1,7 +1,5 @@
 package ru.clevertec.stpnbelko.model;
 
-import ru.clevertec.stpnbelko.model.transaction.Transaction;
-
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -10,8 +8,8 @@ public enum OperationType {
     TRANSFER(1, "Перевод"),
     WITHDRAWAL(2, "Снятие"),
     REFIL(3, "Пополнение"),
-    STATEMENT(4, "Баланс"),
-    INTEREST_CALCULATION(5, "Рассчёт процентов");
+    STATEMENT(4, "Выписка");
+//    INTEREST_CALCULATION(5, "Рассчёт процентов");
 
     public final String descr;
     public final int id;

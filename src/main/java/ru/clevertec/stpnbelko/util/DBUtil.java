@@ -16,7 +16,6 @@ public class DBUtil {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-//        System.out.println("Opened database successfully");
         return connection;
     }
 

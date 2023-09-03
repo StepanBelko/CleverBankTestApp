@@ -5,6 +5,7 @@ import ru.clevertec.stpnbelko.model.Account;
 import ru.clevertec.stpnbelko.model.User;
 import ru.clevertec.stpnbelko.util.DBUtil;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -110,33 +111,33 @@ public class AccountDAO extends AbstractDAO<Account> {
 
     public Set<Account> getUserAccounts(User user) {
 
-            String sql = "SELECT * FROM public.account WHERE owner_id = ?\n" +
-                    "ORDER BY id ASC ";
-            Set<Account> userAccounts = new LinkedHashSet<>();
+        String sql = "SELECT * FROM public.account WHERE owner_id = ?\n" +
+                "ORDER BY id ASC ";
+        Set<Account> userAccounts = new LinkedHashSet<>();
 
-            try (Connection connection = DBUtil.getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-                preparedStatement.setInt(1, user.getId());
-                ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.setInt(1, user.getId());
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-                while (resultSet.next()) {
-                    Account account = new Account();
-                    account.setId(resultSet.getInt("id"));
-                    account.setOwnerId(resultSet.getInt("owner_id"));
-                    account.setBankId(resultSet.getInt("bank_id"));
-                    account.setBalance(resultSet.getBigDecimal("balance"));
-                    account.setCurrency(resultSet.getString("currency"));
-                    account.setOpeningDate(resultSet.getTimestamp("opening_date"));
-                    userAccounts.add(account);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException(e);
+            while (resultSet.next()) {
+                Account account = new Account();
+                account.setId(resultSet.getInt("id"));
+                account.setOwnerId(resultSet.getInt("owner_id"));
+                account.setBankId(resultSet.getInt("bank_id"));
+                account.setBalance(resultSet.getBigDecimal("balance"));
+                account.setCurrency(resultSet.getString("currency"));
+                account.setOpeningDate(resultSet.getTimestamp("opening_date"));
+                userAccounts.add(account);
             }
-
-            return userAccounts;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
+        return userAccounts;
     }
+
+}
 
